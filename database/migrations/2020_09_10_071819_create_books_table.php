@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateManageRoomsTable extends Migration
+class CreateBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateManageRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('manage_rooms', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('room_name');
-            $table->text('notes');
-            $table->string('room_image');
+            $table->string('title');
+            $table->string('description');
+            $table->string('author');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateManageRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('manage_rooms');
+        Schema::dropIfExists('books');
     }
 }

@@ -36,9 +36,7 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                   </form>
                   <hr />
-                  <div class="text-center">
-                    <a class="small" href="#">Forgot Password?</a>
-                  </div>
+                  <div class="text-center"></div>
                   <div class="text-center">
                     <router-link to="/register" class="small">Create an Account</router-link>
                   </div>

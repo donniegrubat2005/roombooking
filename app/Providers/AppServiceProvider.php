@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-
-use App\Repositories\ManageFacility\ManageFacilityInterface;
-use App\Repositories\ManageFacility\ManageFacilityRepository;
+use App\Repositories\Book\BookInterface;
+use App\Repositories\Book\BookRepository;
 use App\Repositories\User\UserInterface;
 use App\Repositories\User\UserRepository;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(UserInterface::class, UserRepository::class);
-        $this->app->singleton(ManageFacilityInterface::class, ManageFacilityRepository::class);
+        $this->app->singleton(BookInterface::class, BookRepository::class);
     }
 
     /**

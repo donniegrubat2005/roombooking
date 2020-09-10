@@ -18,29 +18,26 @@
           <div class="card-body">
             <form>
               <div class="form-group">
-                <label for="facilitytitle">Facility Title</label>
+                <label for="title">Title</label>
+                <input type="text" name="title" v-model="book.title" class="form-control rounded-0" />
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description</label>
                 <input
                   type="text"
-                  name="facilitytitle"
-                  v-model="manageFacility.facility_title"
+                  name="description"
+                  v-model="book.description"
                   class="form-control rounded-0"
                 />
               </div>
+
               <div class="form-group">
-                <label for="facilitydesc">Facility Description</label>
-                <textarea
-                  name="facilitydesc"
-                  v-model="manageFacility.facility_desc"
-                  class="form-control rounded-0"
-                  rows="4"
-                />
-              </div>
-              <div class="form-group">
-                <label for="facilitytitle">Facility Image</label>
+                <label for="author">Author</label>
                 <input
                   type="text"
-                  name="facilitytitle"
-                  v-model="manageFacility.facility_image"
+                  name="author"
+                  v-model="book.author"
                   class="form-control rounded-0"
                 />
               </div>
@@ -61,17 +58,17 @@
 export default {
   data() {
     return {
-      manageFacility: {},
+      book: {},
       error: {},
     };
   },
   methods: {
     update() {
-      let uri = "/api/managefacilities/" + this.$route.params.id;
+      let uri = "/api/books/" + this.$route.params.id;
       axios
-        .patch(uri, this.manageFacility)
+        .patch(uri, this.book)
         .then((response) => {
-          this.contact = response.data;
+          this.book = response.data;
           this.$toastr.success("Updated Successfully!", "Updated!");
           this.returntoList();
         })
@@ -82,16 +79,15 @@ export default {
     },
 
     returntoList() {
-      this.$router.push({ name: "managefacilitylist" });
+      this.$router.push({ name: "booklist" });
     },
   },
-
   created() {
-    let uri = "/api/managefacilities/" + this.$route.params.id + "/edit";
+    let uri = "/api/books/" + this.$route.params.id + "/edit";
     axios
       .get(uri)
       .then((response) => {
-        this.manageFacility = response.data;
+        this.book = response.data;
       })
       .catch((error) => (this.errors = error.response.data.errors));
   },

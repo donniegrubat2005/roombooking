@@ -6,7 +6,7 @@ use App\Repositories\User\UserInterface;
 use Illuminate\Http\Request;
 use Auth;
 use Validator;
-use App\User;
+use App\Models\User;
 
 class AuthController extends Controller
 {

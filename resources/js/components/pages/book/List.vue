@@ -10,9 +10,9 @@
               </div>
               <div class="col-sm-6">
                 <router-link
-                  to="/managefacilities/create"
+                  to="/books/create"
                   class="btn btn-primary float-left float-sm-right btn-rounded"
-                >Create</router-link>
+                >Create Book</router-link>
               </div>
             </div>
           </div>
@@ -22,30 +22,26 @@
                 <thead>
                   <tr>
                     <th scope="col" width="30px">#</th>
-                    <th scope="col">Facilities Title</th>
-                    <th scope="col">Facilities Description</th>
-                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Author</th>
                     <th scope="col" width="90px">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr
-                    v-for="(manageFacility, item) in manageFacilities"
-                    :key="manageFacility.id"
-                    class="table-light"
-                  >
+                  <tr v-for="(book, item) in books" :key="book.id" class="table-light">
                     <th scope="row">{{ item + 1 }}</th>
-                    <td>{{ manageFacility.facility_title }}</td>
-                    <td>{{ manageFacility.facility_desc }}</td>
-                    <td>{{ manageFacility.facility_image }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.description }}</td>
+                    <td>{{ book.author }}</td>
 
                     <td>
                       <span>
                         <router-link
                           :to="{
-                                                        name: 'edit_manage_facility',
+                                                        name: 'editbook',
                                                         params: {
-                                                            id: manageFacility.id
+                                                            id: book.id
                                                         }
                                                     }"
                         >
@@ -71,7 +67,7 @@
                             @click="
                                                             remove(
                                                                 item,
-                                                                manageFacility.id
+                                                                book.id
                                                             )
                                                         "
                           ></i>
@@ -92,27 +88,27 @@
 export default {
   data() {
     return {
-      manageFacilities: [],
+      books: [],
       error: {},
       dataTable: null,
     };
   },
   methods: {
-    getManageFacilities() {
+    getBooks() {
       axios
-        .get("/api/managefacilities")
+        .get("/api/books")
         .then((response) => {
           this.dt = $(this.$refs.table).DataTable();
-          setTimeout(() => (this.manageFacilities = response.data));
+          setTimeout(() => (this.books = response.data));
         })
         .catch((error) => (this.error = error.response.data));
     },
 
     remove(key, id) {
       axios
-        .delete(`/api/managefacilities/${id}`)
+        .delete(`/api/books/${id}`)
         .then(
-          (response) => this.manageFacilities.splice(key, 1),
+          (response) => this.books.splice(key, 1),
           this.$toastr.success("Deleted Successfully!", "Deleted!")
         )
         .catch((error) => {
@@ -123,11 +119,10 @@ export default {
   },
 
   mounted() {
-    this.getManageFacilities();
-    //$("#sellertable").DataTable({});
+    this.getBooks();
   },
   watch: {
-    manageFacilities(val) {
+    books(val) {
       this.dt.destroy();
       this.$nextTick(() => {
         this.dt = $(this.$refs.table).DataTable();

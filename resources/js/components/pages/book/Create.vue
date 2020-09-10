@@ -18,29 +18,26 @@
           <div class="card-body">
             <form>
               <div class="form-group">
-                <label for="facilitytitle">Facility Title</label>
+                <label for="title">Title</label>
+                <input type="text" name="title" v-model="book.title" class="form-control rounded-0" />
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description</label>
                 <input
                   type="text"
-                  name="facilitytitle"
-                  v-model="manageFacility.facility_title"
+                  name="description"
+                  v-model="book.description"
                   class="form-control rounded-0"
                 />
               </div>
+
               <div class="form-group">
-                <label for="facilitydesc">Facility Description</label>
-                <textarea
-                  name="facilitydesc"
-                  v-model="manageFacility.facility_desc"
-                  class="form-control rounded-0"
-                  rows="4"
-                />
-              </div>
-              <div class="form-group">
-                <label for="facilitytitle">Facility Image</label>
+                <label for="author">Author</label>
                 <input
                   type="text"
-                  name="facilitytitle"
-                  v-model="manageFacility.facility_image"
+                  name="author"
+                  v-model="book.author"
                   class="form-control rounded-0"
                 />
               </div>
@@ -61,11 +58,11 @@
 export default {
   data() {
     return {
-      manageFacility: {
+      book: {
         id: "",
-        facility_title: "",
-        facility_desc: "",
-        facility_image: "",
+        title: "",
+        description: "",
+        author: "",
       },
       error: {},
     };
@@ -73,7 +70,7 @@ export default {
   methods: {
     create() {
       axios
-        .post("/api/managefacilities", this.$data.manageFacility)
+        .post("/api/books", this.$data.book)
         .then((response) => {
           this.$toastr.success("Save Successfully!", "Saved!");
           this.returntoList();
@@ -85,7 +82,7 @@ export default {
     },
 
     returntoList() {
-      this.$router.push({ name: "managefacilitylist" });
+      this.$router.push({ name: "booklist" });
     },
   },
 };

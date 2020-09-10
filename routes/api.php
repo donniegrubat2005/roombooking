@@ -27,4 +27,4 @@ Route::prefix('auth')->group(function () {
     Route::patch('users/{user}', 'AuthController@updatepassword');
 });
 
-Route::resource('managefacilities', 'ManageFacility\ManageFacilityController');
+Route::resource('books', 'BookController');

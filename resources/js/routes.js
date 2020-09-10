@@ -8,11 +8,11 @@ import Profile from "./components/pages/profile/Profile.vue";
 import UserList from "./components/pages/profile/UserList.vue";
 import ChangePassword from "./components/pages/profile/ChangePassword.vue";
 
-// Manage Facility components
-import ManageFacility from "./components/pages/manage_facility/ManageFacility.vue";
-import ManageFacilityList from "./components/pages/manage_facility/List.vue";
-import CreateManageFacility from "./components/pages/manage_facility/CreateForm.vue";
-import EditManageFacility from "./components/pages/manage_facility/EditForm.vue";
+// Books component
+import Book from "./components/pages/book/Book.vue";
+import BookList from "./components/pages/book/List.vue";
+import CreateBook from "./components/pages/book/Create.vue";
+import EditBook from "./components/pages/book/Edit.vue";
 
 Vue.use(VueRouter);
 
@@ -46,36 +46,39 @@ const router = new VueRouter({
                         description: "This is dashboard page"
                     }
                 },
+
                 {
-                    path: "/managefacilities",
-                    name: "managefacilities",
-                    component: ManageFacility,
+                    path: "/books",
+                    name: "book",
+                    component: Book,
                     meta: {
+                        title: "Book",
+                        description: "This is book page",
                         requiresAuth: true
                     },
                     children: [
                         {
                             path: "list",
-                            name: "managefacilitylist",
-                            component: ManageFacilityList,
+                            name: "booklist",
+                            component: BookList,
                             meta: {
-                                title: "Manage Facility List"
+                                title: "Book List"
                             }
                         },
                         {
                             path: "create",
-                            name: "create_manage_facility",
-                            component: CreateManageFacility,
+                            name: "createbook",
+                            component: CreateBook,
                             meta: {
-                                title: "Create Manage Facility"
+                                title: "Create Book"
                             }
                         },
                         {
                             path: ":id/edit",
-                            name: "edit_manage_facility",
-                            component: EditManageFacility,
+                            name: "editbook",
+                            component: EditBook,
                             meta: {
-                                title: "Edit Manage Facility"
+                                title: "Edit Book"
                             }
                         }
                     ]

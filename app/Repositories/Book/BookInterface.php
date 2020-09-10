@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\ManageFacility;
+namespace App\Repositories\Book;
 
-interface ManageFacilityInterface
+interface BookInterface
 {
 
     public function getAll();

@@ -54,43 +54,6 @@
                           </button>
                         </router-link>
                       </span>
-                      <span>
-                        <router-link
-                          :to="{
-                                                        name: 'editcontact',
-                                                        params: {
-                                                            id: user.id
-                                                        }
-                                                    }"
-                        >
-                          <button
-                            class="btn btn-secondary"
-                            data-toggle="tooltip"
-                            data-placement="bottom"
-                            title="Edit"
-                          >
-                            <i class="fas fa-pencil-alt ms-text-primary"></i>
-                          </button>
-                        </router-link>
-                      </span>
-                      <span>
-                        <button
-                          class="btn btn-danger"
-                          data-toggle="tooltip"
-                          data-placement="bottom"
-                          title="Delete"
-                        >
-                          <i
-                            class="far fa-trash-alt ms-text-danger"
-                            @click="
-                                                            remove(
-                                                                item,
-                                                                user.id
-                                                            )
-                                                        "
-                          ></i>
-                        </button>
-                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -125,7 +88,6 @@ export default {
 
   mounted() {
     this.getUsers();
-    //$("#sellertable").DataTable({});
   },
   watch: {
     users(val) {
